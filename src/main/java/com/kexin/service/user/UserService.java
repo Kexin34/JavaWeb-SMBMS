@@ -20,11 +20,12 @@ public interface UserService {
     //根据userId修改密码
     public boolean updatePwd(int id, String pwd);
 
-    //根据条件查询用户列表
-    //public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize);
+    //根据条件查询用户表记录数
+    public int getUserCount(String userName, int userRole);
 
-     //根据条件查询用户表记录数
-    //public int getUserCount(String queryUserName, int queryUserRole);
+    //根据条件查询用户列表
+    public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize);
+
 
     /**
      * 根据userCode查询出User

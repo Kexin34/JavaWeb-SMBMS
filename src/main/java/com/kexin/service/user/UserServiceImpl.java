@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -64,10 +67,56 @@ public class UserServiceImpl implements UserService {
         return flag;
     }
 
+    // 查询记录数
+    public int getUserCount(String userName, int userRole) {
+        Connection connection = null;
+        int count = 0;
+        System.out.println("queryUserName ---- > " + userName);
+        System.out.println("queryUserRole ---- > " + userRole);
+        try {
+            connection = BaseDao.getConnection();
+            count = userDao.getUserCount(connection, userName, userRole);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            BaseDao.closeResource(connection, null, null);
+        }
+        return count;
+    }
+
+    // 查询用户列表 getUserList 分页
+    public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize) {
+
+        Connection connection = null;
+        List<User> userList = null;
+        System.out.println("queryUserName ---- > " + queryUserName);
+        System.out.println("queryUserRole ---- > " + queryUserRole);
+        System.out.println("currentPageNo ---- > " + currentPageNo);
+        System.out.println("pageSize ---- > " + pageSize);
+        try {
+            connection = BaseDao.getConnection();
+            userList = userDao.getUserList(connection, queryUserName,queryUserRole,currentPageNo,pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            BaseDao.closeResource(connection, null, null);
+        }
+        return userList;
+    }
+
+
+
     @Test
     public void test() {
         UserServiceImpl userService = new UserServiceImpl();
         User admin = userService.login("admin", "1234567");
         System.out.println(admin.getUserPassword());
     }
+    @Test
+	public void testCount() {
+		UserServiceImpl userService = new UserServiceImpl();
+		int userCount = userService.getUserCount(null,1);
+		System.out.println(userCount);
+	}
+
 }
