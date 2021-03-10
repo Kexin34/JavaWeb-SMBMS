@@ -2,7 +2,7 @@
 <%@include file="/jsp/common/head.jsp"%>
 <div class="right">
 	<img class="wColck"
-		src="${pageContext.request.contextPath }/statics/images/clock.jpg"
+		src="${pageContext.request.contextPath }/images/clock.jpg"
 		alt="" />
 	<div class="wFont">
 		<h2>${userSession.userName}</h2>

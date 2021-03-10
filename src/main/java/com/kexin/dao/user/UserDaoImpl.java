@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,5 +45,19 @@ public class UserDaoImpl implements UserDao{
         }
         // 把封装好的用户返回
         return user;
+    }
+
+    // 修改当前用户密码
+    public int updatePwd(Connection connection, int id, String password) throws SQLException {
+        PreparedStatement pstm = null;
+        int execute = 0;
+
+        if (connection != null) {
+            String sql = "update smbms_user set userPassword = ? where id = ?";
+            Object params[] = {password, id};
+            execute = BaseDao.execute(connection, pstm, sql, params);
+            BaseDao.closeResource(null, pstm, null);
+        }
+        return execute;
     }
 }

@@ -87,7 +87,7 @@ public class BaseDao {
      * @throws Exception
      */
     public static int execute(Connection connection,PreparedStatement pstm,
-                              String sql,Object[] params) throws Exception{
+                              String sql,Object[] params) throws SQLException{
         int updateRows = 0;
         pstm = connection.prepareStatement(sql);
         for(int i = 0; i < params.length; i++){

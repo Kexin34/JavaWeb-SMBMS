@@ -16,6 +16,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- 用户登录过滤器 -->
+    <filter>
+        <filter-name>SysFilter</filter-name>
+        <filter-class>com.kexin.filter.SysFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SysFilter</filter-name>
+        <url-pattern>/jsp/*</url-pattern>
+    </filter-mapping>
+
     <!-- 设置欢迎页面 -->
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
@@ -39,5 +49,19 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/jsp/logout.do</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.kexin.servlet.user.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/jsp/user.do</url-pattern>
+    </servlet-mapping>
+
+    <!-- 默认Session过期时间 -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
 
 </web-app>

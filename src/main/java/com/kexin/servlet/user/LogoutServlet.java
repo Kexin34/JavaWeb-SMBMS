@@ -14,7 +14,7 @@ public class LogoutServlet extends HttpServlet {
         // 移除用户的Session
         req.getSession().removeAttribute(Constants.USER_SESSION);
         System.out.println("req.getContextPath():"+ req.getContextPath());
-        resp.sendRedirect(req.getContextPath() + "/smbms/login.jsp");   // 返回登陆页面
+        resp.sendRedirect(req.getContextPath() + "/login.jsp");   // 返回登陆页面
     }
 
     @Override

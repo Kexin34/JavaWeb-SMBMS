@@ -7,6 +7,7 @@ import com.kexin.pojo.User;
 import org.junit.Test;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 
 /**
@@ -38,14 +39,29 @@ public class UserServiceImpl implements UserService {
         }  finally {
             BaseDao.closeResource(connection, null, null);
         }
-
         //匹配密码
-        if(null != user){
-            if(!user.getUserPassword().equals(userPassword))
+        if(user != null){
+            if(user.getUserPassword() == null || !user.getUserPassword().equals(userPassword))
                 user = null;
         }
-
         return user;
+    }
+
+    public boolean updatePwd(int id, String pwd) {
+        Connection connection = null;
+        boolean flag = false;
+        // 修改密码
+        try {
+            connection = BaseDao.getConnection();
+            if (userDao.updatePwd(connection, id, pwd) > 0) {
+                flag = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            BaseDao.closeResource(connection, null, null);
+        }
+        return flag;
     }
 
     @Test

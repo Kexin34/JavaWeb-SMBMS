@@ -5,7 +5,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>系统登录 - 超市订单管理系统</title>
-     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/style.css" />
+     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css" />
     <script type="text/javascript">
 	/* if(top.location!=self.location){
 	      top.location=self.location;
